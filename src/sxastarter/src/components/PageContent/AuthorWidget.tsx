@@ -54,6 +54,68 @@ const AuthorWidgetDefault = (props: AuthorWidgetProps): JSX.Element => {
   );
 };
 
+const AuthorWidgetCompact = (props: AuthorWidgetProps): JSX.Element => {
+  const id = props.params.RenderingIdentifier;
+
+  return (
+    <div
+      className={`component author-widget compact ${props.params.styles?.trimEnd() || ''}`}
+      id={id || undefined}
+    >
+      <div className="author-card d-flex align-items-center p-2 border rounded">
+        <NextImage
+          field={props.fields.Photo}
+          className="author-img me-2"
+          width={40}
+          height={40}
+        />
+        <div>
+          <h6 className="author-name mb-0">
+            <Text field={props.fields.Name} />
+          </h6>
+          <small className="author-position text-muted">
+            <Text field={props.fields.Position} />
+          </small>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const AuthorWidgetCompactRight = (props: AuthorWidgetProps): JSX.Element => {
+  const id = props.params.RenderingIdentifier;
+
+  return (
+    <div
+      className={`component author-widget compact right ${props.params.styles?.trimEnd() || ''}`}
+      id={id || undefined}
+    >
+      {/* Reverse row so the image is visually on the right */}
+      <div className="author-card d-flex align-items-center flex-row-reverse">
+        {/* Keep the image fixed-size and on the right with space to its left */}
+        <NextImage
+          field={props.fields.Photo}
+          className="author-img ms-2 flex-shrink-0"
+          width={40}
+          height={40}
+        />
+
+        {/* Text block: left-aligned only (doesn't affect the whole card) */}
+        <div className="d-flex flex-column flex-grow-1 text-start">
+          <h6 className="author-name mb-0 text-start">
+            <Text field={props.fields.Name} />
+          </h6>
+          <small className="author-position text-muted text-start">
+            <Text field={props.fields.Position} />
+          </small>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
+
 const AuthorWidgetWithSocials = (props: AuthorWidgetProps): JSX.Element => {
   const id = props.params.RenderingIdentifier;
 
@@ -93,4 +155,6 @@ const AuthorWidgetWithSocials = (props: AuthorWidgetProps): JSX.Element => {
 };
 
 export const Default = withDatasourceCheck()<AuthorWidgetProps>(AuthorWidgetDefault);
+export const Compact = withDatasourceCheck()<AuthorWidgetProps>(AuthorWidgetCompact);
+export const CompactRight = withDatasourceCheck()<AuthorWidgetProps>(AuthorWidgetCompactRight);
 export const WithSocials = withDatasourceCheck()<AuthorWidgetProps>(AuthorWidgetWithSocials);

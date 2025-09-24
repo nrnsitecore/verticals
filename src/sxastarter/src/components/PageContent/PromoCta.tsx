@@ -31,7 +31,7 @@ export type PromoCtaProps = ComponentProps & {
   fields: Fields;
 };
 
-export const Default = (props: PromoCtaProps): JSX.Element => {
+export const Default = (props: PromoCtaProps) => {
   const id = props.params.RenderingIdentifier;
   const { sitecoreContext } = useSitecoreContext();
   const isPageEditing = sitecoreContext.pageEditing;
@@ -91,7 +91,7 @@ export const Default = (props: PromoCtaProps): JSX.Element => {
   );
 };
 
-export const WithPlaceholderColumn = (props: PromoCtaProps): JSX.Element => {
+export const WithPlaceholderColumn = (props: PromoCtaProps) => {
   const id = props.params.RenderingIdentifier;
   const { sitecoreContext } = useSitecoreContext();
   const isPageEditing = sitecoreContext.pageEditing;
